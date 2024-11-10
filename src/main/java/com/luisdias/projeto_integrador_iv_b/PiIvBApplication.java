@@ -1,4 +1,4 @@
-package com.luisdias.pi_iv_b;
+package com.luisdias.projeto_integrador_iv_b;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

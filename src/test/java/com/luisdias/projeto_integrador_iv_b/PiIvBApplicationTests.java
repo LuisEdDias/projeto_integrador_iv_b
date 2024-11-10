@@ -1,4 +1,4 @@
-package com.luisdias.pi_iv_b;
+package com.luisdias.projeto_integrador_iv_b;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

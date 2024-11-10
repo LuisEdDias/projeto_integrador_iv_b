@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.luisdias</groupId>
-	<artifactId>pi-iv-b</artifactId>
+	<artifactId>projeto-integrador-iv-b</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pi-iv-b</name>
+	<name>projeto-integrador-iv-b</name>
 	<description>Porjeto Integrador IV-B</description>
 	<url/>
 	<licenses>
@@ -41,6 +41,12 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
