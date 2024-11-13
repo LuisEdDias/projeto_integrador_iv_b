@@ -9,5 +9,4 @@ public class PiIvBApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PiIvBApplication.class, args);
 	}
-
 }

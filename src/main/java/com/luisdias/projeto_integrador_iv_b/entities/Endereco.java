@@ -1,6 +1,6 @@
 package com.luisdias.projeto_integrador_iv_b.entities;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.CreateEnderecoDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
 
 import java.util.Objects;
 
@@ -19,7 +19,7 @@ public class Endereco {
     private final String complemento;
 
     // Construtor
-    public Endereco(CreateEnderecoDTO enderecoDTO) {
+    public Endereco(EnderecoCreateDTO enderecoDTO) {
         this.rua = enderecoDTO.rua();
         this.numero = enderecoDTO.numero();
         this.cep = enderecoDTO.cep();

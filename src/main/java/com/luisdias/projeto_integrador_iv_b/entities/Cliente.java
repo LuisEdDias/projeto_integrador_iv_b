@@ -1,8 +1,8 @@
 package com.luisdias.projeto_integrador_iv_b.entities;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.CreateClienteDTO;
-import com.luisdias.projeto_integrador_iv_b.dtos.CreateEnderecoDTO;
-import com.luisdias.projeto_integrador_iv_b.dtos.UpdateClienteDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,8 +21,8 @@ public class Cliente {
     private Endereco endereco;
 
     //Construtor
-    public Cliente(CreateClienteDTO clienteDTO){
-        this.clientId = Integer.getInteger(clienteDTO.cpf());
+    public Cliente(ClienteCreateDTO clienteDTO){
+        this.clientId = Integer.parseInt(clienteDTO.cpf());
         this.cpf = clienteDTO.cpf();
         this.nome = clienteDTO.nome();
         this.dataNascimento = getDate(clienteDTO.dataNascimento());
@@ -31,7 +31,7 @@ public class Cliente {
     }
 
     //Função para atualizar os dados do Cliente
-    public Cliente updateCliente(UpdateClienteDTO clienteDTO){
+    public Cliente updateCliente(ClienteUpdateDTO clienteDTO){
         this.nome = clienteDTO.nome();
         this.dataNascimento = getDate(clienteDTO.dataNascimento());
         this.telefone = clienteDTO.telefone();
@@ -39,7 +39,7 @@ public class Cliente {
     }
 
     //Função para atualizar o Endereço
-    public Cliente updateEndereco(CreateEnderecoDTO enderecoDTO){
+    public Cliente updateEndereco(EnderecoCreateDTO enderecoDTO){
         this.endereco = new Endereco(enderecoDTO);
         return this;
     }

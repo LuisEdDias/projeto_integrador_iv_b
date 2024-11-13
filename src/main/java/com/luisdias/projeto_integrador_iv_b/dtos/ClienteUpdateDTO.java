@@ -1,16 +1,9 @@
 package com.luisdias.projeto_integrador_iv_b.dtos;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record CreateClienteDTO(
-        @NotBlank(message = "CPF não deve estar em branco.")
-        @Pattern(
-                regexp = "^\\d{11}$",
-                message = "CPF deve conter exatamente 11 dígitos."
-        )
-        String cpf,
+public record ClienteUpdateDTO(
         @NotBlank(message = "Nome não deve estar em branco.")
         @Pattern(
                 regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,255}$",
@@ -28,8 +21,6 @@ public record CreateClienteDTO(
                 regexp = "^\\d{10,11}$",
                 message = "Telefone deve conter 10 ou 11 dígitos."
         )
-        String telefone,
-        @Valid
-        CreateEnderecoDTO endereco
+        String telefone
 ) {
 }
