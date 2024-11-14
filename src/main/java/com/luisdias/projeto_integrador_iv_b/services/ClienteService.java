@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 // Classe por implementar as regras de negócio relacionadas à classe Cliente
-public class ClienteService {
+public class ClienteService implements ClienteServiceInterface {
     // Declaração do atributo da interface do banco de dados
     private final DatabaseInterface<Cliente, Integer> database;
 
@@ -29,12 +29,15 @@ public class ClienteService {
         Cliente cliente = database.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado."));;
         return new ClienteGetDTO(cliente);
-
     }
 
     // Método que cria um cliente e insere no banco de dados
     public ClienteGetDTO create(ClienteCreateDTO clienteCreateDTO) {
-        Cliente cliente = database.insert(new Cliente(clienteCreateDTO));
+        Cliente cliente = new Cliente(clienteCreateDTO);
+        if(database.findById(cliente.getClientId()).isPresent()) {
+            throw new IllegalArgumentException("Cliente já cadastrado.");
+        }
+        cliente = database.insert(cliente);
         return new ClienteGetDTO(cliente);
     }
 
