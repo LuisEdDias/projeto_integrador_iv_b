@@ -6,11 +6,13 @@ import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteGetDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
 import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 // Classe responsável por implementar as regras de negócio relacionadas à classe Cliente
+@Service
 public class ClienteService implements ClienteServiceInterface {
     // Declaração do atributo da interface com o repositório
     private final ClienteRepositoryInterface clienteRepository;

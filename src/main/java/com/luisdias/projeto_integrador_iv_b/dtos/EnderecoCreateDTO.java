@@ -37,7 +37,7 @@ public record EnderecoCreateDTO(
         String cidade,
         @NotBlank(message = "Estado não deve estar em branco.")
         @Pattern(
-                regexp = "^\\[A-Z]{2}$",
+                regexp = "^[A-Z]{2}$",
                 message = "Estado deve ser representado por 2 letras maiúsculas."
         )
         String estado,

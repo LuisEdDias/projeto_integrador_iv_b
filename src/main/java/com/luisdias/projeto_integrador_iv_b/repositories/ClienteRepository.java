@@ -2,11 +2,13 @@ package com.luisdias.projeto_integrador_iv_b.repositories;
 
 import com.luisdias.projeto_integrador_iv_b.db.DatabaseInterface;
 import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 // Classe responsável por implementar a lógica de acesso ao banco de dados
+@Repository
 public class ClienteRepository implements ClienteRepositoryInterface {
     // Declaração do atributo da interface com o banco de dados
     private final DatabaseInterface<Cliente, Long> db;
