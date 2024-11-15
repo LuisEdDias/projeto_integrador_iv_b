@@ -10,15 +10,18 @@ import java.util.Objects;
 // serem instâncias diferentes.
 // Dependência: Endereços não têm identidade própria e são atributos de outras entidades.
 public class Endereco {
-    private final String rua;
-    private final String numero;
-    private final String cep;
-    private final String bairro;
-    private final String cidade;
-    private final String estado;
-    private final String complemento;
+    private String rua;
+    private String numero;
+    private String cep;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String complemento;
 
-    // Construtor
+    // Construtor usado pelo banco de dados
+    public Endereco(){}
+
+    // Construtor que recebe um DTO
     public Endereco(EnderecoCreateDTO enderecoDTO) {
         this.rua = enderecoDTO.rua();
         this.numero = enderecoDTO.numero();

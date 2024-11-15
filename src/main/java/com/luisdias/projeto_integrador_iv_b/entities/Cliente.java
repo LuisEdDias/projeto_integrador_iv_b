@@ -1,5 +1,6 @@
 package com.luisdias.projeto_integrador_iv_b.entities;
 
+import com.luisdias.projeto_integrador_iv_b.config.annotations.Id;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
@@ -12,17 +13,22 @@ import java.util.Objects;
 //A classe Cliente representa uma entidade a ser persistida no banco de dados
 public class Cliente {
     //ID
-    private final int clientId;
-    private final String cpf;
+    @Id
+    private long clientId;
+    private String cpf;
     private String nome;
     private Date dataNascimento;
     private String telefone;
     //Object Value utilizado para compor a classe
     private Endereco endereco;
 
-    //Construtor
+    //Construtor usado pelo banco de dados
+    public Cliente(){}
+
+    //Construtor que recebe um DTO
     public Cliente(ClienteCreateDTO clienteDTO){
-        this.clientId = Integer.parseInt(clienteDTO.cpf());
+        long id = Objects.hash(clienteDTO.cpf());
+        this.clientId = id < 0 ? (id * id) : id;
         this.cpf = clienteDTO.cpf();
         this.nome = clienteDTO.nome();
         this.dataNascimento = getDate(clienteDTO.dataNascimento());
@@ -49,7 +55,7 @@ public class Cliente {
         return cpf;
     }
 
-    public int getClientId() {
+    public long getClientId() {
         return clientId;
     }
 
@@ -80,7 +86,7 @@ public class Cliente {
     }
 
     // Sobrescrevendo equals e hashCode para garantir que dois Cliente com os mesmos valores
-    // de ID e CPF sejam considerados iguais
+    // de CPF sejam considerados iguais
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

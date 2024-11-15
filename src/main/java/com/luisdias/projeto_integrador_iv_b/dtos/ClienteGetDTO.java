@@ -3,6 +3,7 @@ package com.luisdias.projeto_integrador_iv_b.dtos;
 import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
 
 public record ClienteGetDTO(
+        long id,
         String cpf,
         String nome,
         String dataNascimento,
@@ -11,6 +12,7 @@ public record ClienteGetDTO(
 ) {
     public ClienteGetDTO(Cliente cliente) {
         this(
+                cliente.getClientId(),
                 cliente.getCpf(),
                 cliente.getNome(),
                 cliente.getDataNascimento().toString(),
