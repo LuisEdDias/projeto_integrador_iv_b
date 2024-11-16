@@ -1,6 +1,6 @@
 package com.luisdias.projeto_integrador_iv_b.entities;
 
-import com.luisdias.projeto_integrador_iv_b.config.annotations.Id;
+import com.luisdias.projeto_integrador_iv_b.db.Identificador;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
@@ -11,10 +11,9 @@ import java.util.Date;
 import java.util.Objects;
 
 //A classe Cliente representa uma entidade a ser persistida no banco de dados
-public class Cliente {
+public class Cliente implements Identificador<Long> {
     //ID
-    @Id
-    private long clientId;
+    private long id;
     private String cpf;
     private String nome;
     private Date dataNascimento;
@@ -27,8 +26,7 @@ public class Cliente {
 
     //Construtor que recebe um DTO
     public Cliente(ClienteCreateDTO clienteDTO){
-        long id = Objects.hash(clienteDTO.cpf());
-        this.clientId = id < 0 ? (id * id) : id;
+        this.id = generateId(clienteDTO.cpf());
         this.cpf = clienteDTO.cpf();
         this.nome = clienteDTO.nome();
         this.dataNascimento = getDate(clienteDTO.dataNascimento());
@@ -55,8 +53,9 @@ public class Cliente {
         return cpf;
     }
 
-    public long getClientId() {
-        return clientId;
+    @Override
+    public Long getId() {
+        return id;
     }
 
     public Date getDataNascimento() {
@@ -75,7 +74,7 @@ public class Cliente {
         return endereco;
     }
 
-    //Função privada para converter a String date no tipo Date
+    //Método auxiliar para converter a String date no tipo Date
     private Date getDate(String date){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -85,6 +84,12 @@ public class Cliente {
         }
     }
 
+    // Método auxiliar para geração do ID
+    private long generateId(String id) {
+        long aux = Objects.hash(id);
+        return aux > 0 ? aux : aux * aux;
+    }
+
     // Sobrescrevendo equals e hashCode para garantir que dois Cliente com os mesmos valores
     // de CPF sejam considerados iguais
     @Override
@@ -92,12 +97,12 @@ public class Cliente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return clientId == cliente.clientId && Objects.equals(cpf, cliente.cpf);
+        return id == cliente.id && Objects.equals(cpf, cliente.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, cpf);
+        return Objects.hash(id, cpf);
     }
 
     @Override

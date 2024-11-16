@@ -2,8 +2,10 @@ package com.luisdias.projeto_integrador_iv_b.dtos;
 
 import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
 
+import java.text.SimpleDateFormat;
+
 public record ClienteGetDTO(
-        long id,
+        long clienteId,
         String cpf,
         String nome,
         String dataNascimento,
@@ -12,10 +14,10 @@ public record ClienteGetDTO(
 ) {
     public ClienteGetDTO(Cliente cliente) {
         this(
-                cliente.getClientId(),
+                cliente.getId(),
                 cliente.getCpf(),
                 cliente.getNome(),
-                cliente.getDataNascimento().toString(),
+                new SimpleDateFormat("dd-MM-yyyy").format(cliente.getDataNascimento()),
                 cliente.getTelefone(),
                 new EnderecoGetDTO(cliente.getEndereco())
         );

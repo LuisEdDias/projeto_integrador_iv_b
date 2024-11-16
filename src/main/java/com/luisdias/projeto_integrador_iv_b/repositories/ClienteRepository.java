@@ -15,19 +15,19 @@ public class ClienteRepository implements ClienteRepositoryInterface {
 
     // Injeção da dependência da interface com o banco de dados
     public ClienteRepository(DatabaseInterface<Cliente, Long> db) {
-        this.db = db;
+        this.db = db.dbConnection();
     }
 
     // Método que recupera um Cliente do banco de dados via ID
     @Override
     public Optional<Cliente> findById(long id) {
-        return Optional.ofNullable(db.find(id));
+        return Optional.ofNullable(db.find(id, Cliente.class));
     }
 
     // Método que retorna todos os Clientes do banco de dados
     @Override
     public List<Cliente> findAll() {
-        return db.findAll();
+        return db.findAll(Cliente.class);
     }
 
     // Método que verifica se um Cliente existe no banco de dados
@@ -51,6 +51,6 @@ public class ClienteRepository implements ClienteRepositoryInterface {
     // Método que deleta um Cliente do banco de dados via ID
     @Override
     public boolean deleteById(long id) {
-        return db.delete(id);
+        return db.delete(id, Cliente.class);
     }
 }

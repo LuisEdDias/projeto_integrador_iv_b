@@ -87,7 +87,7 @@ public class Endereco {
     public String toString() {
         return rua + " " +
                 numero +
-                (complemento.isEmpty()? "\n" : (", " + complemento + "\n ")) +
+                (complemento.isEmpty()? "\n" : (", " + complemento + "\n")) +
                 bairro + "\n" +
                 String.format("%s-%s", cep.substring(0,5), cep.substring(5,8)) + " " +
                 cidade + "/" +

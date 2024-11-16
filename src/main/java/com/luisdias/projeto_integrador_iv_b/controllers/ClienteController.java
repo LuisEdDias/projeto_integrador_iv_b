@@ -3,6 +3,7 @@ package com.luisdias.projeto_integrador_iv_b.controllers;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteGetDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.services.ClienteServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,11 @@ public class ClienteController {
     @PutMapping("/{id}")
     public ResponseEntity<ClienteGetDTO> updateCliente(@PathVariable long id, @RequestBody @Valid ClienteUpdateDTO clienteUpdateDTO) {
         return ResponseEntity.ok(clienteService.update(id, clienteUpdateDTO));
+    }
+
+    @PutMapping("/{id}/endereco")
+    public ResponseEntity<ClienteGetDTO> updateEndereco(@PathVariable long id, @RequestBody @Valid EnderecoCreateDTO enderecoCreateDTO) {
+        return ResponseEntity.ok(clienteService.updateAddress(id, enderecoCreateDTO));
     }
 
     @DeleteMapping("/{id}")
