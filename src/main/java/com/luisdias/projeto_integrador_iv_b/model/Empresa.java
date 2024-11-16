@@ -26,7 +26,7 @@ public class Empresa {
     }
 
     // Método para atualizar o endereço da empresa
-    public void updateEndereco(EnderecoCreateDTO enderecoDTO){
+    public void setEndereco(EnderecoCreateDTO enderecoDTO){
         this.endereco = new Endereco(enderecoDTO);
     }
 
@@ -36,12 +36,12 @@ public class Empresa {
     }
 
     // Método para atualizar o endereço do Proprietário
-    public void updateEnderecoProprietario(EnderecoCreateDTO enderecoDTO){
+    public void setEnderecoProprietario(EnderecoCreateDTO enderecoDTO){
         this.proprietario.updateEndereco(enderecoDTO);
     }
 
     // Método para troca do Proprietário
-    public void newProprietario(PessoaCreateDTO proprietarioDTO){
+    public void setProprietario(PessoaCreateDTO proprietarioDTO){
         this.proprietario = new Pessoa(proprietarioDTO);
     }
 

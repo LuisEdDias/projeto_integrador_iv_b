@@ -36,7 +36,7 @@ public class ClientePessoaFisica extends Pessoa implements Identificador<Long> {
         return this;
     }
 
-    // Getters
+    // Implementação do método exigido pelo banco de dados
     @Override
     public Long getId() {
         return id;
