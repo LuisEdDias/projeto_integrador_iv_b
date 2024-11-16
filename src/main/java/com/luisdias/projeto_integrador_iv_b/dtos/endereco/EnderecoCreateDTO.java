@@ -1,4 +1,4 @@
-package com.luisdias.projeto_integrador_iv_b.dtos;
+package com.luisdias.projeto_integrador_iv_b.dtos.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

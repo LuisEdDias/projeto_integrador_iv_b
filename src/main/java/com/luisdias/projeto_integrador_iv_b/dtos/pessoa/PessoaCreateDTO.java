@@ -1,10 +1,11 @@
-package com.luisdias.projeto_integrador_iv_b.dtos;
+package com.luisdias.projeto_integrador_iv_b.dtos.pessoa;
 
+import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record ClienteCreateDTO(
+public record PessoaCreateDTO(
         @NotBlank(message = "CPF não deve estar em branco.")
         @Pattern(
                 regexp = "^\\d{11}$",

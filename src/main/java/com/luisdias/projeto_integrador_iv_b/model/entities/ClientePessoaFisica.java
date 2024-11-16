@@ -1,0 +1,73 @@
+package com.luisdias.projeto_integrador_iv_b.model.entities;
+
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
+import com.luisdias.projeto_integrador_iv_b.infra.db.Identificador;
+import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.model.Pessoa;
+
+import java.util.Objects;
+
+//A classe Cliente representa uma entidade a ser persistida no banco de dados
+public class ClientePessoaFisica extends Pessoa implements Identificador<Long> {
+    //ID
+    private long id;
+
+
+    //Construtor padrão
+    public ClientePessoaFisica(){
+    }
+
+    //Construtor que recebe um DTO
+    public ClientePessoaFisica(PessoaCreateDTO clienteDTO){
+        super(clienteDTO);
+        this.id = generateId(clienteDTO.cpf());
+    }
+
+    public ClientePessoaFisica updateCliente(PessoaUpdateDTO pessoaUpdateDTO) {
+        super.update(pessoaUpdateDTO);
+        return this;
+    }
+
+    public ClientePessoaFisica updateEndereco(EnderecoCreateDTO enderecoCreateDTO) {
+        super.updateEndereco(enderecoCreateDTO);
+        return this;
+    }
+
+    //Getters
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    // Método auxiliar para geração do ID
+    private long generateId(String id) {
+        long aux = Objects.hash(id);
+        return aux > 0 ? aux : aux * aux;
+    }
+
+    // Sobrescrevendo equals e hashCode para garantir que dois Cliente com os mesmos valores
+    // de CPF sejam considerados iguais
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientePessoaFisica cliente = (ClientePessoaFisica) o;
+        return id == cliente.id && Objects.equals(getCpf(), cliente.getCpf());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, getCpf());
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + "\n" +
+                "CPF: " + getCpf() + "\n" +
+                "Data de nascimento: " + getDataNascimento() + "\n" +
+                "Telefone: " + getTelefone() + "\n" +
+                "Endereco: " + "\n" +
+                getEndereco();
+    }
+}

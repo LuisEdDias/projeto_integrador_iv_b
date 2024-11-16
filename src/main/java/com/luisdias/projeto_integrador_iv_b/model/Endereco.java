@@ -1,6 +1,6 @@
-package com.luisdias.projeto_integrador_iv_b.entities;
+package com.luisdias.projeto_integrador_iv_b.model;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 
 import java.util.Objects;
 

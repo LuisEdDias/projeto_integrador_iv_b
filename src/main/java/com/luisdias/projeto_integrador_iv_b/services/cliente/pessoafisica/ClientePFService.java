@@ -1,11 +1,11 @@
-package com.luisdias.projeto_integrador_iv_b.services;
+package com.luisdias.projeto_integrador_iv_b.services.cliente.pessoafisica;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.EnderecoCreateDTO;
-import com.luisdias.projeto_integrador_iv_b.repositories.ClienteRepositoryInterface;
-import com.luisdias.projeto_integrador_iv_b.dtos.ClienteCreateDTO;
-import com.luisdias.projeto_integrador_iv_b.dtos.ClienteGetDTO;
-import com.luisdias.projeto_integrador_iv_b.dtos.ClienteUpdateDTO;
-import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
+import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
+import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaFisica;
+import com.luisdias.projeto_integrador_iv_b.repositories.cliente.pessoafisica.ClientePFRepositoryInterface;
+import com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoafisica.ClientePFGetDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,51 +13,51 @@ import java.util.NoSuchElementException;
 
 // Classe responsável por implementar as regras de negócio relacionadas à classe Cliente
 @Service
-public class ClienteService implements ClienteServiceInterface {
+public class ClientePFService implements ClientePFServiceInterface {
     // Declaração do atributo da interface com o repositório
-    private final ClienteRepositoryInterface clienteRepository;
+    private final ClientePFRepositoryInterface clienteRepository;
 
     // Injeção da dependência da interface com o repositório via construtor
-    public ClienteService(ClienteRepositoryInterface clienteRepository) {
+    public ClientePFService(ClientePFRepositoryInterface clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
     // Método que retorna todos os clientes do banco de dados
-    public List<ClienteGetDTO> getAll() {
-        return clienteRepository.findAll().stream().map(ClienteGetDTO::new).toList();
+    public List<ClientePFGetDTO> getAll() {
+        return clienteRepository.findAll().stream().map(ClientePFGetDTO::new).toList();
     }
 
     // Método que busca um cliente no banco de dados via ID
-    public ClienteGetDTO getById(long id) {
-        Cliente cliente = getCliente(id);
-        return new ClienteGetDTO(cliente);
+    public ClientePFGetDTO getById(long id) {
+        ClientePessoaFisica cliente = getCliente(id);
+        return new ClientePFGetDTO(cliente);
     }
 
     // Método que cria um cliente e insere no banco de dados
-    public ClienteGetDTO create(ClienteCreateDTO clienteCreateDTO) {
-        Cliente cliente = new Cliente(clienteCreateDTO);
+    public ClientePFGetDTO create(PessoaCreateDTO createDTO) {
+        ClientePessoaFisica cliente = new ClientePessoaFisica(createDTO);
         if(clienteRepository.exists(cliente)) {
             throw new IllegalArgumentException("Cliente já cadastrado.");
         }
         cliente = clienteRepository.create(cliente)
                 .orElseThrow(() -> new RuntimeException("Não foi possível realizar o cadastro."));
-        return new ClienteGetDTO(cliente);
+        return new ClientePFGetDTO(cliente);
     }
 
     // Método que atualiza os dados de um cliente no banco de dados
-    public ClienteGetDTO update(long id, ClienteUpdateDTO clienteUpdateDTO) {
-        Cliente cliente = getCliente(id);
-        cliente = clienteRepository.update(cliente.updateCliente(clienteUpdateDTO))
+    public ClientePFGetDTO update(long id, PessoaUpdateDTO updateDTO) {
+        ClientePessoaFisica cliente = getCliente(id);
+        cliente = clienteRepository.update(cliente.updateCliente(updateDTO))
                 .orElseThrow(() -> new RuntimeException("Não foi possível atualizar os dados do Cliente."));
-        return new ClienteGetDTO(cliente);
+        return new ClientePFGetDTO(cliente);
     }
 
     // Método que atualiza os dados de um cliente no banco de dados
-    public ClienteGetDTO updateAddress(long id, EnderecoCreateDTO enderecoCreateDTO) {
-        Cliente cliente = getCliente(id);
+    public ClientePFGetDTO updateAddress(long id, EnderecoCreateDTO enderecoCreateDTO) {
+        ClientePessoaFisica cliente = getCliente(id);
         cliente = clienteRepository.update(cliente.updateEndereco(enderecoCreateDTO))
                 .orElseThrow(() -> new RuntimeException("Não foi possível atualizar os dados do Cliente."));
-        return new ClienteGetDTO(cliente);
+        return new ClientePFGetDTO(cliente);
     }
 
     // Método que deleta um cliente do banco de dados via ID
@@ -66,7 +66,7 @@ public class ClienteService implements ClienteServiceInterface {
     }
 
     // Método auxiliar que recupera um Cliente do banco de dados
-    private Cliente getCliente(long id) {
+    private ClientePessoaFisica getCliente(long id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado."));
     }

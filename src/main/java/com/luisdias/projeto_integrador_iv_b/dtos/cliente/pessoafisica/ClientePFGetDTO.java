@@ -1,10 +1,11 @@
-package com.luisdias.projeto_integrador_iv_b.dtos;
+package com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoafisica;
 
-import com.luisdias.projeto_integrador_iv_b.entities.Cliente;
+import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoGetDTO;
+import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaFisica;
 
 import java.text.SimpleDateFormat;
 
-public record ClienteGetDTO(
+public record ClientePFGetDTO(
         long clienteId,
         String cpf,
         String nome,
@@ -12,7 +13,7 @@ public record ClienteGetDTO(
         String telefone,
         EnderecoGetDTO endereco
 ) {
-    public ClienteGetDTO(Cliente cliente) {
+    public ClientePFGetDTO(ClientePessoaFisica cliente) {
         this(
                 cliente.getId(),
                 cliente.getCpf(),

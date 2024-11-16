@@ -1,4 +1,4 @@
-package com.luisdias.projeto_integrador_iv_b.db;
+package com.luisdias.projeto_integrador_iv_b.infra.db;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;

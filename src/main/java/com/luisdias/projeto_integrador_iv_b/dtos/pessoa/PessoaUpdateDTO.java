@@ -1,9 +1,9 @@
-package com.luisdias.projeto_integrador_iv_b.dtos;
+package com.luisdias.projeto_integrador_iv_b.dtos.pessoa;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record ClienteUpdateDTO(
+public record PessoaUpdateDTO(
         @NotBlank(message = "Nome não deve estar em branco.")
         @Pattern(
                 regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,255}$",

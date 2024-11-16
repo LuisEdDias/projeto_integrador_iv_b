@@ -1,6 +1,6 @@
-package com.luisdias.projeto_integrador_iv_b.dtos;
+package com.luisdias.projeto_integrador_iv_b.dtos.endereco;
 
-import com.luisdias.projeto_integrador_iv_b.entities.Endereco;
+import com.luisdias.projeto_integrador_iv_b.model.Endereco;
 
 public record EnderecoGetDTO(
         String rua,
