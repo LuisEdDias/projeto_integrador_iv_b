@@ -55,7 +55,7 @@ public class ClientePFService implements ClientePFServiceInterface {
     // Método que atualiza os dados de um cliente no banco de dados
     public ClientePFGetDTO updateAddress(long id, EnderecoCreateDTO enderecoCreateDTO) {
         ClientePessoaFisica cliente = getCliente(id);
-        cliente = clienteRepository.update(cliente.updateEndereco(enderecoCreateDTO))
+        cliente = clienteRepository.update(cliente.newEndereco(enderecoCreateDTO))
                 .orElseThrow(() -> new RuntimeException("Não foi possível atualizar os dados do Cliente."));
         return new ClientePFGetDTO(cliente);
     }

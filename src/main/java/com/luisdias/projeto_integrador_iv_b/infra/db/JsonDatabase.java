@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.locks.ReentrantLock;
 
+// Classe genérica que implementa operações CRUD sobre o arquivo JSON
+// Utilização do padrão Singleton para gerenciar o acesso único ao arquivo
 @Component
 public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInterface<T, K> {
     private final ObjectMapper objectMapper;

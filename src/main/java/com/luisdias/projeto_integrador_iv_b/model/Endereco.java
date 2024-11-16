@@ -61,7 +61,8 @@ public class Endereco {
         return complemento;
     }
 
-    // Sobrescrevendo equals e hashCode para garantir que dois Enderecos com os mesmos valores sejam considerados iguais
+    // Sobrescrevendo equals e hashCode para garantir que dois Endereços com os
+    // mesmos valores sejam considerados iguais
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

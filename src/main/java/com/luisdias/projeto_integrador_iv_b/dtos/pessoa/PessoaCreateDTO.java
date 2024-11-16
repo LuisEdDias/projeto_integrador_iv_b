@@ -15,7 +15,7 @@ public record PessoaCreateDTO(
         @NotBlank(message = "Nome não deve estar em branco.")
         @Pattern(
                 regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,255}$",
-                message = "Nome deve conter entre 3 e 255 caracteres, incluindo apenas letras, espaços, apóstrofes e hifens."
+                message = "Nome deve conter entre 3 e 255 caracteres, incluindo apenas letras e espaços."
         )
         String nome,
         @NotBlank(message = "Data de nascimento não deve estar em branco.")

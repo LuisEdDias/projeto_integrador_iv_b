@@ -8,33 +8,35 @@ import com.luisdias.projeto_integrador_iv_b.model.Pessoa;
 
 import java.util.Objects;
 
-//A classe Cliente representa uma entidade a ser persistida no banco de dados
+// A classe ClientePessoaFisica representa uma entidade a ser persistida no banco de dados
+// e é uma especialização da classe Pessoa
 public class ClientePessoaFisica extends Pessoa implements Identificador<Long> {
-    //ID
+    // ID
     private long id;
 
-
-    //Construtor padrão
+    // Construtor padrão
     public ClientePessoaFisica(){
     }
 
-    //Construtor que recebe um DTO
+    // Construtor que recebe um DTO
     public ClientePessoaFisica(PessoaCreateDTO clienteDTO){
         super(clienteDTO);
         this.id = generateId(clienteDTO.cpf());
     }
 
+    // Método para atualizar os dados do Cliente
     public ClientePessoaFisica updateCliente(PessoaUpdateDTO pessoaUpdateDTO) {
         super.update(pessoaUpdateDTO);
         return this;
     }
 
-    public ClientePessoaFisica updateEndereco(EnderecoCreateDTO enderecoCreateDTO) {
+    // Método para atualizar o Endereço do Cliente
+    public ClientePessoaFisica newEndereco(EnderecoCreateDTO enderecoCreateDTO) {
         super.updateEndereco(enderecoCreateDTO);
         return this;
     }
 
-    //Getters
+    // Getters
     @Override
     public Long getId() {
         return id;
@@ -46,7 +48,7 @@ public class ClientePessoaFisica extends Pessoa implements Identificador<Long> {
         return aux > 0 ? aux : aux * aux;
     }
 
-    // Sobrescrevendo equals e hashCode para garantir que dois Cliente com os mesmos valores
+    // Sobrescrevendo equals e hashCode para garantir que dois Clientes com os mesmos valores
     // de CPF sejam considerados iguais
     @Override
     public boolean equals(Object o) {

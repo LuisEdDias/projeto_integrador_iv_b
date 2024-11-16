@@ -8,19 +8,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Classe genérica que representa uma pessoa
 public class Pessoa {
-    String cpf;
-    String nome;
-    Date dataNascimento;
-    String telefone;
-    //Object Value utilizado para compor a classe
-    Endereco endereco;
+    private String cpf;
+    private String nome;
+    private Date dataNascimento;
+    private String telefone;
+    // Object Value utilizado para compor a classe
+    private Endereco endereco;
 
     // Construtor padrão
     public Pessoa() {
     }
 
-    //Construtor que recebe um DTO
+    // Construtor que recebe um DTO
     public Pessoa(PessoaCreateDTO pessoaCreateDTO){
         this.cpf = pessoaCreateDTO.cpf();
         this.nome = pessoaCreateDTO.nome();
@@ -29,21 +30,19 @@ public class Pessoa {
         this.endereco = new Endereco(pessoaCreateDTO.endereco());
     }
 
-    //Função para atualizar os dados do Cliente
-    public Pessoa update(PessoaUpdateDTO pessoaUpdateDTO){
+    // Método para atualizar os dados da Pessoa
+    public void update(PessoaUpdateDTO pessoaUpdateDTO){
         this.nome = pessoaUpdateDTO.nome();
         this.dataNascimento = getDate(pessoaUpdateDTO.dataNascimento());
         this.telefone = pessoaUpdateDTO.telefone();
-        return this;
     }
 
-    //Função para atualizar o Endereço
-    public Pessoa updateEndereco(EnderecoCreateDTO enderecoDTO){
+    // Método para atualizar o Endereço
+    public void updateEndereco(EnderecoCreateDTO enderecoDTO){
         this.endereco = new Endereco(enderecoDTO);
-        return this;
     }
 
-    //Getters
+    // Getters
     public String getCpf() {
         return cpf;
     }
@@ -64,7 +63,7 @@ public class Pessoa {
         return endereco;
     }
 
-    //Método auxiliar para converter a String date no tipo Date
+    // Método auxiliar para converter a String date no tipo Date
     private Date getDate(String date){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -80,7 +79,6 @@ public class Pessoa {
                 "CPF: " + cpf + "\n" +
                 "Data de nascimento: " + dataNascimento + "\n" +
                 "Telefone: " + telefone + "\n" +
-                "Endereco: " + "\n" +
-                endereco;
+                "Endereco: " + "\n" + endereco;
     }
 }
