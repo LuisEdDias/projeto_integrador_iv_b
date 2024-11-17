@@ -1,11 +1,11 @@
-package com.luisdias.projeto_integrador_iv_b.services.cliente.pessoafisica;
+package com.luisdias.projeto_integrador_iv_b.services.pessoafisica;
 
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
+import com.luisdias.projeto_integrador_iv_b.services.DatabaseRepository;
 import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaFisica;
-import com.luisdias.projeto_integrador_iv_b.repositories.cliente.pessoafisica.ClientePFRepositoryInterface;
-import com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoafisica.ClientePFGetDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoafisica.ClientePFGetDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +13,12 @@ import java.util.NoSuchElementException;
 
 // Classe responsável por implementar as regras de negócio relacionadas à classe Cliente PF
 @Service
-public class ClientePFService implements ClientePFServiceInterface {
+public class ClientePFService implements com.luisdias.projeto_integrador_iv_b.controllers.pessoafisica.ClientePFService {
     // Declaração do atributo da interface com o repositório
-    private final ClientePFRepositoryInterface clienteRepository;
+    private final DatabaseRepository<ClientePessoaFisica, Long> clienteRepository;
 
     // Injeção da dependência da interface com o repositório via construtor
-    public ClientePFService(ClientePFRepositoryInterface clienteRepository) {
+    public ClientePFService(DatabaseRepository<ClientePessoaFisica, Long> clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
@@ -42,7 +42,7 @@ public class ClientePFService implements ClientePFServiceInterface {
         if(clienteRepository.exists(cliente)) {
             throw new IllegalArgumentException("Cliente já cadastrado.");
         }
-        cliente = clienteRepository.create(cliente)
+        cliente = clienteRepository.insert(cliente)
                 .orElseThrow(() -> new RuntimeException("Não foi possível realizar o cadastro."));
         return new ClientePFGetDTO(cliente);
     }
@@ -68,12 +68,12 @@ public class ClientePFService implements ClientePFServiceInterface {
     // Método que deleta um cliente do banco de dados via ID
     @Override
     public boolean delete(long id) {
-        return clienteRepository.deleteById(id);
+        return clienteRepository.delete(id);
     }
 
     // Método auxiliar que recupera um Cliente do banco de dados
     private ClientePessoaFisica getCliente(long id) {
-        return clienteRepository.findById(id)
+        return clienteRepository.find(id)
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado."));
     }
 }

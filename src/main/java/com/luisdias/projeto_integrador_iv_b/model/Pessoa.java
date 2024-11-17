@@ -4,8 +4,6 @@ import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // Classe genérica que representa uma pessoa

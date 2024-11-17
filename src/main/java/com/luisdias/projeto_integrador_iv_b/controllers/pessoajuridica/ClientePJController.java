@@ -1,11 +1,10 @@
-package com.luisdias.projeto_integrador_iv_b.controllers;
+package com.luisdias.projeto_integrador_iv_b.controllers.pessoajuridica;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoajuridica.ClientePJGetDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoajuridica.ClientePJGetDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.empresa.EmpresaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
-import com.luisdias.projeto_integrador_iv_b.services.cliente.pessoajuridica.ClientePJServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,10 @@ import java.util.List;
 @RequestMapping("/clientes/empresas")
 public class ClientePJController {
     // Declaração da dependência da interface de serviço
-    private final ClientePJServiceInterface clienteService;
+    private final ClientePJService clienteService;
 
     // Injeção de dependência via construtor
-    public ClientePJController(ClientePJServiceInterface clienteService) {
+    public ClientePJController(ClientePJService clienteService) {
         this.clienteService = clienteService;
     }
 

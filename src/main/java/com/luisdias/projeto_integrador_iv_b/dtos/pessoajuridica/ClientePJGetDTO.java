@@ -1,4 +1,4 @@
-package com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoajuridica;
+package com.luisdias.projeto_integrador_iv_b.dtos.pessoajuridica;
 
 import com.luisdias.projeto_integrador_iv_b.dtos.empresa.EmpresaGetDTO;
 import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaJuridica;

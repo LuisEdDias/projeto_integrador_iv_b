@@ -1,4 +1,4 @@
-package com.luisdias.projeto_integrador_iv_b.infra.db;
+package com.luisdias.projeto_integrador_iv_b.db;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 // Classe genérica que implementa operações CRUD sobre o arquivo JSON
 // Utilização do padrão Singleton para gerenciar o acesso único ao arquivo
 @Component
-public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInterface<T, K> {
+public class JsonDatabase<T extends Identificador<K>, K>{
     private final ObjectMapper objectMapper;
     private final ReentrantLock lock;
 
@@ -28,14 +28,12 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para obter a instância Singleton
-    @Override
     @SuppressWarnings("unchecked")
-    public synchronized DatabaseInterface<T, K> dbConnection() {
-        return (DatabaseInterface<T, K>) instance;
+    public synchronized JsonDatabase<T, K> dbConnection() {
+        return (JsonDatabase<T, K>) instance;
     }
 
     // Método para encontrar um objeto por ID
-    @Override
     public T find(K key, Class<T> clazz) {
         lock.lock();
         try {
@@ -51,7 +49,6 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para retornar todos os objetos do arquivo
-    @Override
     public List<T> findAll(Class<T> clazz) {
         lock.lock();
         try {
@@ -64,7 +61,6 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para verificar se um objeto existe
-    @Override
     @SuppressWarnings("unchecked")
     public boolean exists(T t) {
         lock.lock();
@@ -80,7 +76,6 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para inserir um novo objeto no arquivo
-    @Override
     @SuppressWarnings("unchecked")
     public T insert(T t) {
         lock.lock();
@@ -100,7 +95,6 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para atualizar um objeto existente no arquivo
-    @Override
     @SuppressWarnings("unchecked")
     public T update(T t) {
         lock.lock();
@@ -124,7 +118,6 @@ public class JsonDatabase<T extends Identificador<K>, K> implements DatabaseInte
     }
 
     // Método para deletar um objeto pelo ID
-    @Override
     public boolean delete(K key, Class<T> clazz) {
         lock.lock();
         try {

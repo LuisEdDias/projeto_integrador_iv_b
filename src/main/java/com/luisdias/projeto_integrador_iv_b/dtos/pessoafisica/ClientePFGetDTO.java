@@ -1,4 +1,4 @@
-package com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoafisica;
+package com.luisdias.projeto_integrador_iv_b.dtos.pessoafisica;
 
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoGetDTO;
 import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaFisica;

@@ -4,7 +4,7 @@ import com.luisdias.projeto_integrador_iv_b.dtos.empresa.EmpresaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
-import com.luisdias.projeto_integrador_iv_b.infra.db.Identificador;
+import com.luisdias.projeto_integrador_iv_b.db.Identificador;
 import com.luisdias.projeto_integrador_iv_b.model.Empresa;
 
 import java.util.Objects;

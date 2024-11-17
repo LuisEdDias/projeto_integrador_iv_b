@@ -1,7 +1,8 @@
-package com.luisdias.projeto_integrador_iv_b.repositories.cliente.pessoajuridica;
+package com.luisdias.projeto_integrador_iv_b.repositories;
 
-import com.luisdias.projeto_integrador_iv_b.infra.db.DatabaseInterface;
+import com.luisdias.projeto_integrador_iv_b.db.JsonDatabase;
 import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaJuridica;
+import com.luisdias.projeto_integrador_iv_b.services.DatabaseRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,18 +10,18 @@ import java.util.Optional;
 
 // Classe responsável por implementar a lógica de acesso ao banco de dados
 @Repository
-public class ClientePJRepository implements ClientePJRepositoryInterface {
-    // Declaração do atributo da interface com o banco de dados
-    private final DatabaseInterface<ClientePessoaJuridica, String> db;
+public class ClientePJRepository implements DatabaseRepository<ClientePessoaJuridica, String> {
+    // Declaração da dependência de conexão com o banco de dados
+    private final JsonDatabase<ClientePessoaJuridica, String> db;
 
-    // Injeção da dependência da interface com o banco de dados
-    public ClientePJRepository(DatabaseInterface<ClientePessoaJuridica, String> db) {
-        this.db = db.dbConnection();
+    // Injeção de dependência via construtor
+    public ClientePJRepository(JsonDatabase<ClientePessoaJuridica, String> jsonDatabase) {
+        this.db = jsonDatabase.dbConnection();
     }
 
     // Método que recupera um Cliente do banco de dados via ID
     @Override
-    public Optional<ClientePessoaJuridica> findById(String id) {
+    public Optional<ClientePessoaJuridica> find(String id) {
         return Optional.ofNullable(db.find(id, ClientePessoaJuridica.class));
     }
 
@@ -38,7 +39,7 @@ public class ClientePJRepository implements ClientePJRepositoryInterface {
 
     // Método que insere um Cliente no banco de dados
     @Override
-    public Optional<ClientePessoaJuridica> create(ClientePessoaJuridica cliente) {
+    public Optional<ClientePessoaJuridica> insert(ClientePessoaJuridica cliente) {
         return Optional.ofNullable(db.insert(cliente));
     }
 
@@ -50,7 +51,7 @@ public class ClientePJRepository implements ClientePJRepositoryInterface {
 
     // Método que deleta um Cliente do banco de dados via ID
     @Override
-    public boolean deleteById(String id) {
+    public boolean delete(String id) {
         return db.delete(id, ClientePessoaJuridica.class);
     }
 }

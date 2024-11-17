@@ -1,12 +1,12 @@
-package com.luisdias.projeto_integrador_iv_b.services.cliente.pessoajuridica;
+package com.luisdias.projeto_integrador_iv_b.services.pessoajuridica;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoajuridica.ClientePJGetDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoajuridica.ClientePJGetDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.empresa.EmpresaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
 import com.luisdias.projeto_integrador_iv_b.model.entities.ClientePessoaJuridica;
-import com.luisdias.projeto_integrador_iv_b.repositories.cliente.pessoajuridica.ClientePJRepositoryInterface;
+import com.luisdias.projeto_integrador_iv_b.services.DatabaseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.NoSuchElementException;
 
 // Classe responsável por implementar as regras de negócio relacionadas à classe Cliente PJ
 @Service
-public class ClientePJService implements ClientePJServiceInterface {
+public class ClientePJService implements com.luisdias.projeto_integrador_iv_b.controllers.pessoajuridica.ClientePJService {
     // Declaração do atributo da interface com o repositório
-    private final ClientePJRepositoryInterface clienteRepository;
+    private final DatabaseRepository<ClientePessoaJuridica, String> clienteRepository;
 
     // Injeção da dependência da interface com o repositório via construtor
-    public ClientePJService(ClientePJRepositoryInterface clienteRepository) {
+    public ClientePJService(DatabaseRepository<ClientePessoaJuridica, String> clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
@@ -43,7 +43,7 @@ public class ClientePJService implements ClientePJServiceInterface {
         if(clienteRepository.exists(cliente)) {
             throw new IllegalArgumentException("Cliente já cadastrado.");
         }
-        cliente = clienteRepository.create(cliente)
+        cliente = clienteRepository.insert(cliente)
                 .orElseThrow(() -> new RuntimeException("Não foi possível realizar o cadastro."));
         return new ClientePJGetDTO(cliente);
     }
@@ -87,12 +87,12 @@ public class ClientePJService implements ClientePJServiceInterface {
     // Método que deleta um cliente do banco de dados via ID
     @Override
     public boolean delete(String id) {
-        return clienteRepository.deleteById(id);
+        return clienteRepository.delete(id);
     }
 
     // Método auxiliar que recupera um Cliente do banco de dados
     private ClientePessoaJuridica getCliente(String id) {
-        return clienteRepository.findById(id)
+        return clienteRepository.find(id)
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado."));
     }
 }

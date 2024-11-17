@@ -1,10 +1,9 @@
-package com.luisdias.projeto_integrador_iv_b.controllers;
+package com.luisdias.projeto_integrador_iv_b.controllers.pessoafisica;
 
-import com.luisdias.projeto_integrador_iv_b.dtos.cliente.pessoafisica.ClientePFGetDTO;
+import com.luisdias.projeto_integrador_iv_b.dtos.pessoafisica.ClientePFGetDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.endereco.EnderecoCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaCreateDTO;
 import com.luisdias.projeto_integrador_iv_b.dtos.pessoa.PessoaUpdateDTO;
-import com.luisdias.projeto_integrador_iv_b.services.cliente.pessoafisica.ClientePFServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +15,10 @@ import java.util.List;
 @RequestMapping("/clientes/pessoas")
 public class ClientePFController {
     // Declaração da dependência da interface de serviço
-    private final ClientePFServiceInterface clienteService;
+    private final ClientePFService clienteService;
 
     // Injeção de dependência via construtor
-    public ClientePFController(ClientePFServiceInterface clienteService) {
+    public ClientePFController(ClientePFService clienteService) {
         this.clienteService = clienteService;
     }
 
