@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-// Classe responsável por implementar as regras de negócio relacionadas à classe Cliente
+// Classe responsável por implementar as regras de negócio relacionadas à classe Cliente PF
 @Service
 public class ClientePFService implements ClientePFServiceInterface {
     // Declaração do atributo da interface com o repositório
@@ -23,17 +23,20 @@ public class ClientePFService implements ClientePFServiceInterface {
     }
 
     // Método que retorna todos os clientes do banco de dados
+    @Override
     public List<ClientePFGetDTO> getAll() {
         return clienteRepository.findAll().stream().map(ClientePFGetDTO::new).toList();
     }
 
     // Método que busca um cliente no banco de dados via ID
+    @Override
     public ClientePFGetDTO getById(long id) {
         ClientePessoaFisica cliente = getCliente(id);
         return new ClientePFGetDTO(cliente);
     }
 
     // Método que cria um cliente e insere no banco de dados
+    @Override
     public ClientePFGetDTO create(PessoaCreateDTO createDTO) {
         ClientePessoaFisica cliente = new ClientePessoaFisica(createDTO);
         if(clienteRepository.exists(cliente)) {
@@ -45,6 +48,7 @@ public class ClientePFService implements ClientePFServiceInterface {
     }
 
     // Método que atualiza os dados de um cliente no banco de dados
+    @Override
     public ClientePFGetDTO update(long id, PessoaUpdateDTO updateDTO) {
         ClientePessoaFisica cliente = getCliente(id);
         cliente = clienteRepository.update(cliente.updateCliente(updateDTO))
@@ -53,6 +57,7 @@ public class ClientePFService implements ClientePFServiceInterface {
     }
 
     // Método que atualiza os dados de um cliente no banco de dados
+    @Override
     public ClientePFGetDTO updateAddress(long id, EnderecoCreateDTO enderecoCreateDTO) {
         ClientePessoaFisica cliente = getCliente(id);
         cliente = clienteRepository.update(cliente.newEndereco(enderecoCreateDTO))
@@ -61,6 +66,7 @@ public class ClientePFService implements ClientePFServiceInterface {
     }
 
     // Método que deleta um cliente do banco de dados via ID
+    @Override
     public boolean delete(long id) {
         return clienteRepository.deleteById(id);
     }

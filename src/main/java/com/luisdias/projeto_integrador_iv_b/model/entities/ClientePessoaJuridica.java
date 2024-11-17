@@ -43,7 +43,7 @@ public class ClientePessoaJuridica extends Empresa implements Identificador<Stri
     }
 
     // Método que troca o Proprietário da Empresa
-    public ClientePessoaJuridica updateProprietario(PessoaCreateDTO proprietarioCreateDTO) {
+    public ClientePessoaJuridica newProprietario(PessoaCreateDTO proprietarioCreateDTO) {
         super.setProprietario(proprietarioCreateDTO);
         return this;
     }
