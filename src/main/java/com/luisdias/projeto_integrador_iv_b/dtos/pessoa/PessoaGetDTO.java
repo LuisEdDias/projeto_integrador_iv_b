@@ -16,7 +16,7 @@ public record PessoaGetDTO(
         this(
                 pessoa.getCpf(),
                 pessoa.getNome(),
-                new SimpleDateFormat("dd-MM-yyyy").format(pessoa.getDataNascimento()),
+                new SimpleDateFormat("yyyy-MM-dd").format(pessoa.getDataNascimento()),
                 pessoa.getTelefone(),
                 new EnderecoGetDTO(pessoa.getEndereco())
         );

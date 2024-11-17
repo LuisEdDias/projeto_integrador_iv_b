@@ -10,10 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-// Classe responsável por processar a entrada de dados, valida os dados recebidos e
-// chama o método adequado do Service
+// Classe responsável por processar a entrada de dados, validar os dados recebidos e
+// chamar o método adequado do Service
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/clientes/pessoas")
 public class ClientePFController {
     // Declaração da dependência da interface de serviço
     private final ClientePFServiceInterface clienteService;

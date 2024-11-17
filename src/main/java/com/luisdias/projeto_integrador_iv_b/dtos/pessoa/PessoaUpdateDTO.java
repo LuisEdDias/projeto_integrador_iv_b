@@ -1,7 +1,11 @@
 package com.luisdias.projeto_integrador_iv_b.dtos.pessoa;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
+
+import java.util.Date;
 
 public record PessoaUpdateDTO(
         @NotBlank(message = "Nome não deve estar em branco.")
@@ -10,12 +14,9 @@ public record PessoaUpdateDTO(
                 message = "Nome deve conter entre 3 e 255 caracteres, incluindo apenas letras, espaços, apóstrofes e hifens."
         )
         String nome,
-        @NotBlank(message = "Data de nascimento não deve estar em branco.")
-        @Pattern(
-                regexp = "^\\d{2}/\\d{2}/\\d{4}$",
-                message = "Data de nascimento deve estar no formato dd/MM/yyyy."
-        )
-        String dataNascimento,
+        @Past(message = "Data de nascimento inválida.")
+        @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Sao_Paulo")
+        Date dataNascimento,
         @NotBlank(message = "Telefone não deve estar em branco.")
         @Pattern(
                 regexp = "^\\d{10,11}$",

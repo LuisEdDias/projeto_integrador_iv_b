@@ -25,7 +25,7 @@ public class Pessoa {
     public Pessoa(PessoaCreateDTO pessoaCreateDTO){
         this.cpf = pessoaCreateDTO.cpf();
         this.nome = pessoaCreateDTO.nome();
-        this.dataNascimento = getDate(pessoaCreateDTO.dataNascimento());
+        this.dataNascimento = pessoaCreateDTO.dataNascimento();
         this.telefone = pessoaCreateDTO.telefone();
         this.endereco = new Endereco(pessoaCreateDTO.endereco());
     }
@@ -33,7 +33,7 @@ public class Pessoa {
     // Método para atualizar os dados da Pessoa
     public void update(PessoaUpdateDTO pessoaUpdateDTO){
         this.nome = pessoaUpdateDTO.nome();
-        this.dataNascimento = getDate(pessoaUpdateDTO.dataNascimento());
+        this.dataNascimento = pessoaUpdateDTO.dataNascimento();
         this.telefone = pessoaUpdateDTO.telefone();
     }
 
@@ -61,16 +61,6 @@ public class Pessoa {
 
     public Endereco getEndereco() {
         return endereco;
-    }
-
-    // Método auxiliar para converter a String date no tipo Date
-    private Date getDate(String date){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return sdf.parse(date);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Data em formato inválido.");
-        }
     }
 
     @Override
