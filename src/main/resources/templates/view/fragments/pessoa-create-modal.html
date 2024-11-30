@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Cadastro</title>
+</head>
+<body>
+<div th:fragment="pessoa-create-modal(url)" class="modal fade" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1" aria-hidden="true" id="createPessoaModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="container" method="post" th:action="${url}">
+                <div class="row justify-content-center">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Novo Proprietário</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-11 pb-4">
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="nome" name="nome"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="nome">Nome</label>
+                                    </div>
+                                </div>
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="cpf" name="cpf"
+                                               type="text" class="form-control text-black-75 fs-4"
+                                               pattern="^\d+$" maxlength="11" required/>
+                                        <label class="form-label" for="cpf">CPF</label>
+                                    </div>
+                                </div>
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input type="date" id="dataNascimento" name="dataNascimento"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="dataNascimento">Data de Nascimento</label>
+                                    </div>
+                                </div>
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="telefone" name="telefone"
+                                               type="text" class="form-control text-black-75 fs-4"
+                                               pattern="^\d+$" maxlength="11" minlength="10" required/>
+                                        <label class="form-label" for="telefone">Telefone</label>
+                                    </div>
+                                </div>
+
+                                <!-- Endereço -->
+                                <h3>Endereço</h3>
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.rua" name="endereco.rua"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="endereco.rua">Rua</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between pb-2 gap-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.numero" name="endereco.numero"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="endereco.numero">Número</label>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.cep" name="endereco.cep"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="endereco.cep">CEP</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between pb-2 gap-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.bairro" name="endereco.bairro"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="endereco.bairro">Bairro</label>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.cidade" name="endereco.cidade"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="endereco.cidade">Cidade</label>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input id="endereco.estado" name="endereco.estado"
+                                                   class="form-control text-black-75 fs-4"
+                                                   pattern="^\[a-zA-Z]$" maxlength="2" minlength="2"
+                                                   placeholder="XX" required/>
+                                            <label class="form-label" for="endereco.estado">Estado</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="pb-4">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="endereco.complemento" name="endereco.complemento"
+                                               class="form-control text-black-75 fs-4"/>
+                                        <label class="form-label" for="endereco.complemento">Complemento</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" >Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

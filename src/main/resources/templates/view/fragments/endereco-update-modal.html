@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Endereço</title>
+</head>
+<body>
+<div th:fragment="endereco-update-modal(endereco, url)" class="modal-dialog">
+        <div class="modal-content">
+            <form class="container" method="post" th:action="${url}">
+                <input type="hidden" name="_method" value="put"/>
+                <div class="row justify-content-center">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" >Editar Endereço</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9 pb-4">
+                                <div class="pb-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="rua" name="rua" th:value="${endereco.rua()}"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="rua">Rua</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between pb-2 gap-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="numero" name="numero" th:value="${endereco.numero()}"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="numero">Número</label>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="cep" name="cep" th:value="${endereco.cep()}"
+                                               class="form-control text-black-75 fs-4"
+                                               maxlength="8" minlength="8" required/>
+                                        <label class="form-label" for="cep">CEP</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between pb-2 gap-2">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="bairro" name="bairro" th:value="${endereco.bairro()}"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="bairro">Bairro</label>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="cidade" name="cidade" th:value="${endereco.cidade()}"
+                                               class="form-control text-black-75 fs-4" required/>
+                                        <label class="form-label" for="cidade">Cidade</label>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input id="estado" name="estado" th:value="${endereco.estado()}"
+                                                   class="form-control text-black-75 fs-4"
+                                                   pattern="^\[a-zA-Z]$" maxlength="2" minlength="2"
+                                                   placeholder="XX" required/>
+                                            <label class="form-label" for="estado">Estado</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="pb-4">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input id="complemento" name="complemento" th:value="${endereco.complemento()}"
+                                               class="form-control text-black-75 fs-4"/>
+                                        <label class="form-label" for="complemento">Complemento</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" >Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

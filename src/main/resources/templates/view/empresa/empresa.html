@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Empresa</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="col-10 card rounded-3 border border-black p-3 d-flex mb-4">
+        <h2 class="text-center">Empresa</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Razão Social</p>
+            </div>
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${empresa.empresa().razaoSocial()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">CNPJ</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${empresa.empresa().cnpj()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Endereço</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:utext="${
+                empresa.empresa().endereco().rua() + ' ' + empresa.empresa().endereco().numero() +
+                ', ' + empresa.empresa().endereco().complemento() + '<br>' +
+                empresa.empresa().endereco().bairro() + '<br>' +
+                empresa.empresa().endereco().cep() + ' ' + empresa.empresa().endereco().cidade() +
+                '/' + empresa.empresa().endereco().estado()
+                }"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row d-flex align-content-center justify-content-around my-3">
+            <button type="button" class="btn btn-lg btn-outline-info col-5" data-bs-toggle="modal"
+                    data-bs-target="#enderecoUpdate">
+                Editar Endereço
+            </button>
+            <button type="button" class="btn btn-lg btn-outline-danger col-5" data-bs-toggle="modal"
+                    data-bs-target="#deleteClienteModal">
+                Remover
+            </button>
+        </div>
+    </div>
+
+    <div class="col-10 card rounded-3 border border-black p-3 d-flex mb-auto">
+        <h2 class="text-center">Proprietário</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Nome</p>
+            </div>
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${empresa.empresa().proprietario().nome()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Telefone</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${empresa.empresa().proprietario().telefone()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Endereço</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:utext="${
+                empresa.empresa().proprietario().endereco().rua() + ' '
+                + empresa.empresa().proprietario().endereco().numero() +
+                ', ' + empresa.empresa().proprietario().endereco().complemento() + '<br>' +
+                empresa.empresa().proprietario().endereco().bairro() + '<br>' +
+                empresa.empresa().proprietario().endereco().cep() + ' '
+                + empresa.empresa().proprietario().endereco().cidade() +
+                '/' + empresa.empresa().proprietario().endereco().estado()
+                }"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row d-flex align-content-center justify-content-around my-3">
+            <button type="button" class="btn btn-lg btn-outline-info col-3" data-bs-toggle="modal"
+                    data-bs-target="#update-pessoa-modal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-lg btn-outline-primary col-3" data-bs-toggle="modal"
+                    data-bs-target="#enderecoPropetarioUpdate">
+                Editar Endereço
+            </button>
+            <button type="button" class="btn btn-lg btn-outline-success col-3" data-bs-toggle="modal"
+                    data-bs-target="#createPessoaModal">
+                Novo Proprietário
+            </button>
+        </div>
+    </div>
+
+    <div th:replace="~{view/fragments/pessoa-update-modal.html :: update-pessoa-modal
+    (pessoa=${empresa.empresa().proprietario()},
+    url=@{'/clientes/empresas/' + ${empresa.clienteId()} + '/proprietario'})}">
+    </div>
+
+    <div th:replace="~{view/fragments/pessoa-create-modal.html :: pessoa-create-modal
+    (url=@{'/clientes/empresas/' + ${empresa.clienteId()} + '/proprietario'})}">
+    </div>
+
+    <div th:replace="~{view/fragments/delete-cliente-modal.html :: delete-cliente-modal
+    (url=@{'/clientes/empresas/' + ${empresa.clienteId()}}, nome=${empresa.empresa().razaoSocial()})}">
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1" aria-hidden="true" id="enderecoUpdate">
+        <div th:replace="~{view/fragments/endereco-update-modal.html :: endereco-update-modal
+        (endereco=${empresa.empresa().endereco()},
+        url=@{'/clientes/empresas/' + ${empresa.clienteId()} + '/endereco'})}"></div>
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-hidden="true" id="enderecoPropetarioUpdate">
+        <div th:replace="~{view/fragments/endereco-update-modal.html :: endereco-update-modal
+        (endereco=${empresa.empresa().proprietario().endereco()},
+        url=@{'/clientes/empresas/' + ${empresa.clienteId()} + '/proprietario/endereco'})}"></div>
+    </div>
+</div>
+</body>
+</html>

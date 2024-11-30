@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Pessoas</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="row align-items-center justify-content-center vh-50">
+        <div class="list-group align-middle mb-0 bg-white" th:hidden="${pessoas == null || pessoas.isEmpty()}">
+            <table class="table table-hover table-sm text-center align-middle">
+                <thead class="sticky-top">
+                <tr class="table-secondary">
+                    <th scope="col" class="col-3">Nome</th>
+                    <th scope="col" class="col-2">CPF</th>
+                    <th scope="col" class="col-3">Telefone</th>
+                    <th scope="col" class="col-2">Cidade/Estado</th>
+                    <th scope="col" class="col-2"></th>
+                </tr>
+                </thead>
+                <tbody class="table-hover" th:each="pessoa : ${pessoas}">
+                <tr>
+                    <td th:text="${pessoa.nome()}"></td>
+                    <td th:text="${pessoa.cpf()}"></td>
+                    <td th:text="${pessoa.telefone()}"></td>
+                    <td th:text="${pessoa.endereco().cidade()} + '/'
+                + ${pessoa.endereco().estado()}"></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary w-75 my-1">
+                            <a th:href="@{'pessoas/' + ${pessoa.clienteId()}}">Ver</a>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div class="flex-column" th:hidden="${!pessoas.isEmpty()}">
+                <h3 class="row fs-5 py-4 justify-content-center">Não existem clientes cadastrados!</h3>
+            </div>
+            <div class="row justify-content-center">
+                <a th:href="@{'pessoas/cadastro'}" class="btn btn-success btn-lg col-8 col-md-6 col-sm-3" role="button">
+                    Cadastrar Cliente
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Cliente</title>
+</head>
+<body>
+<div th:fragment="delete-cliente-modal(url, nome)" class="modal fade" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1" aria-hidden="true" id="deleteClienteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="container" th:action="${url}" method="post">
+                <input type="hidden" name="_method" value="delete"/>
+                <div class="row justify-content-center">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Deletar Cliente</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <p>Deletar cadastro do cliente <i class="fw-bold" th:text="${nome}"></i> ?</p>
+                            <p class="py-3 fs-3 text-center">ESSA AÇÃO NÃO PODE SER DESFEITA</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" >Deletar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

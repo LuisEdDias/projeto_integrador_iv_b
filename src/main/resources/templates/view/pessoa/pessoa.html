@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Cliente</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="col-10 card rounded-3 border border-black p-3 d-flex mb-4">
+        <h2 class="text-center">Cliente</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Nome</p>
+            </div>
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${pessoa.nome()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">CPF</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${pessoa.cpf()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Data de Nascimento</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${pessoa.dataNascimento()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Telefone</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:text="${pessoa.telefone()}"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mb-0">Endereço</p>
+            </div>
+
+            <div class="col-sm-9">
+                <p class="text-muted mb-0" th:utext="${
+                pessoa.endereco().rua() + ' ' + pessoa.endereco().numero() +
+                ', ' + pessoa.endereco().complemento() + '<br>' +
+                pessoa.endereco().bairro() + '<br>' +
+                pessoa.endereco().cep() + ' ' + pessoa.endereco().cidade() +
+                '/' + pessoa.endereco().estado()
+                }"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row d-flex align-content-center justify-content-around my-3">
+            <button type="button" class="btn btn-lg btn-outline-info col-3" data-bs-toggle="modal"
+                    data-bs-target="#update-pessoa-modal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-lg btn-outline-primary col-3" data-bs-toggle="modal"
+                    data-bs-target="#enderecoUpdate">
+                Editar Endereço
+            </button>
+            <button type="button" class="btn btn-lg btn-outline-danger col-3" data-bs-toggle="modal"
+                    data-bs-target="#deleteClienteModal">
+                Remover
+            </button>
+        </div>
+    </div>
+
+    <div th:replace="~{view/fragments/pessoa-update-modal.html :: update-pessoa-modal
+    (pessoa=${pessoa},
+    url=@{'/clientes/pessoas/' + ${pessoa.clienteId()}})}">
+    </div>
+
+    <div th:replace="~{view/fragments/delete-cliente-modal.html :: delete-cliente-modal
+    (url=@{'/clientes/pessoas/' + ${pessoa.clienteId()}}, nome=${pessoa.nome()})}">
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1" aria-hidden="true" id="enderecoUpdate">
+        <div th:replace="~{view/fragments/endereco-update-modal.html :: endereco-update-modal
+        (endereco=${pessoa.endereco()},
+        url=@{'/clientes/pessoas/' + ${pessoa.clienteId()} + '/endereco'})}"></div>
+    </div>
+</div>
+</body>
+</html>
